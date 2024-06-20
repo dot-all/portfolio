@@ -27,4 +27,4 @@ If you wish to get in touch with me, this section provides various ways to do so
 - **Framer Motion**: For animations.
 - **GSAP (GreenSock Animation Platform)**: For animations.
 
-*Developed with ❤️ by [dot-all].*
+*Developed with ❤️ by allan.*
