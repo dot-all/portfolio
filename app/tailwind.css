@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Lato-Regular.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(/fonts/Lato-Black.woff2) format('woff2');
+  }
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(/fonts/Roboto-Medium.woff2) format('woff2');
+  }
+}
+
+	*, *::after, *::before {
+  	box-sizing: border-box;
+  	margin: 0;
+  	padding: 0;
+  	margin-block-start: 0;
+	}
+	body, html {
+  	scrollbar-width: none;
+  	scrollbar-color: transparent transparent;
+  	-ms-overflow-style: none;
+	}
+
+	body::-webkit-scrollbar {
+  	width: 0;
+	}
