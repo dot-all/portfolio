@@ -15,7 +15,7 @@ Here, I showcase some of the most prominent projects I have worked on. Each proj
 ### About Me
 
 This section provides an overview of who I am, my interests and any other relevant information about me and my professional career. 
-
+ 
 ### Contact
 
 If you wish to get in touch with me, this section provides various ways to do so. You can find my email and links to my social media profiles. 
