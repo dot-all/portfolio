@@ -1,6 +1,6 @@
 # Portfolio
 
-Welcome to my web portfolio! This project showcases my work and skills as a developer.
+Welcome to my web portfolio! This project showcases my work and skills as a developer. 
 
 ## Portfolio Sections
 
