@@ -6,7 +6,7 @@ Welcome to my web portfolio! This project showcases my work and skills as a deve
 
 ### Experience
 
-In this section, you will find information about my professional journey, including my previous jobs, roles performed, and skills acquired throughout my career. 
+In this section, you will find information about my professional journey, including my previous jobs, roles performed, and skills acquired throughout my career.
 
 ### Portfolio
 
