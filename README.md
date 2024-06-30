@@ -18,7 +18,7 @@ This section provides an overview of who I am, my interests and any other releva
  
 ### Contact
 
-If you wish to get in touch with me, this section provides various ways to do so. You can find my email and links to my social media profiles. 
+If you wish to get in touch with me, this section provides various ways to do so. You can find my email and links to my social media profiles.
 
 ## Technologies Used
 
