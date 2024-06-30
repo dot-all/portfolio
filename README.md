@@ -26,5 +26,6 @@ If you wish to get in touch with me, this section provides various ways to do so
 - **Cloudflare Pages**: For deploying the site.
 - **Framer Motion**: For animations.
 - **GSAP (GreenSock Animation Platform)**: For animations.
+- **TailwindCSS**: For styles.
 
 *Developed with ❤️ by allan.*
