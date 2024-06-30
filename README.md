@@ -22,7 +22,7 @@ If you wish to get in touch with me, this section provides various ways to do so
 
 ## Technologies Used
 
-- **Remix**: For building the web application. 
+- **Remix**: For building the web application.
 - **Cloudflare Pages**: For deploying the site.
 - **Framer Motion**: For animations.
 - **GSAP (GreenSock Animation Platform)**: For animations.
