@@ -14,7 +14,7 @@ Here, I showcase some of the most prominent projects I have worked on. Each proj
 
 ### About Me
 
-This section provides an overview of who I am, my interests and any other relevant information about me and my professional career. 
+This section provides an overview of who I am, my interests and any other relevant information about me and my professional career.
  
 ### Contact
 
