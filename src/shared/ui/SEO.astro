@@ -1,0 +1,88 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    image?: string;
+    canonical?: string;
+    author?: string;
+    keywords?: string;
+}
+
+const {
+    title,
+    description,
+    image = "/og.png",
+    canonical,
+    author = "Allan Quiroz",
+    keywords = "Software Engineer, Web Developer, Mobile Developer, Full Stack, React, Node.js, Astro, Flutter",
+} = Astro.props;
+
+const determineCanonicalURL = () => {
+    if (Astro.url.host.includes("localhost")) return "http://localhost:4321";
+    return canonical || Astro.url.href;
+};
+
+const canonicalURL = determineCanonicalURL();
+
+const currentPath = Astro.url.pathname.replace(/^\/(es|en)/, "");
+const baseUrl = Astro.site?.toString().replace(/\/$/, "") || "https://allan.cl";
+
+const esUrl = `${baseUrl}/es${currentPath}`;
+const enUrl = `${baseUrl}/en${currentPath}`;
+---
+
+<meta charset="UTF-8" />
+<link rel="alternate" hreflang="es" href={esUrl} />
+<link rel="alternate" hreflang="en" href={enUrl} />
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+<meta name="keywords" content={keywords} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Allan Quiroz",
+        url: "https://allan.cl",
+        jobTitle: "Software Engineer",
+        worksFor: {
+            "@type": "Organization",
+            name: "Afisan",
+        },
+        sameAs: [
+            "https://github.com/dot-all",
+            "https://www.linkedin.com/in/im-allan/",
+        ],
+        address: {
+            "@type": "PostalAddress",
+            addressRegion: "Valparaíso",
+            addressCountry: "Chile",
+        },
+        knowsAbout: [
+            "Flutter",
+            "React",
+            "TypeScript",
+            "System Architecture",
+            "Full Stack Development",
+        ],
+        description: description,
+    })}
+/>

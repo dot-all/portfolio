@@ -1,0 +1,70 @@
+---
+import { useTranslations } from "../../../shared/i18n";
+
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+---
+
+<section
+    id="hero"
+    class="max-w-[1200px] mx-auto px-6 mb-24 @[48rem]:mb-32 pt-32 @container"
+>
+    <p class="text-sm font-medium text-gray-500 mb-6 uppercase tracking-wider">
+        {t("hero.role_label")}
+    </p>
+    <div
+        class="grid grid-cols-1 @[48rem]:grid-cols-12 gap-y-10 @[48rem]:gap-y-12 items-end"
+    >
+        <h1
+            class="display-heading text-[15vw] @[48rem]:text-[130px] leading-[0.85] @[48rem]:ml-[-8px] text-gray-900 dark:text-white transition-colors @[48rem]:col-span-8 uppercase"
+            set:html={t("hero.title")}
+        />
+        <div class="@[48rem]:col-span-4 flex flex-col justify-end">
+            <p
+                class="text-lg @[48rem]:text-xl font-medium leading-snug text-gray-500 dark:text-gray-400 mb-8 transition-colors"
+            >
+                {t("hero.description")}
+            </p>
+            <a
+                id="start-project-btn"
+                href="#contact"
+                class="inline-flex items-center text-sm font-bold border-b border-black dark:border-white pb-1 hover:text-gray-600 dark:hover:text-gray-300 dark:text-white transition-colors w-fit"
+                data-astro-prefetch="false"
+            >
+                {t("hero.cta")}
+                <span class="ml-2">→</span>
+            </a>
+            <script>
+                const btn = document.getElementById("start-project-btn");
+                btn?.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    // @ts-ignore
+                    if (window.lenis) {
+                        // @ts-ignore
+                        window.lenis.scrollTo("#contact", {
+                            duration: 2,
+                            easing: (t: number) =>
+                                Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                        });
+                    } else {
+                        document.getElementById("contact")?.scrollIntoView({
+                            behavior: "smooth",
+                        });
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</section>
+
+<style>
+    .display-heading {
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        font-weight: 800;
+    }
+</style>

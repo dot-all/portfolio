@@ -1,0 +1,89 @@
+---
+import { getCollection } from "astro:content";
+import { useTranslations } from "@shared/i18n";
+
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as any);
+
+const posts = (await getCollection("blog"))
+    .filter((post) => post.slug.startsWith(`${lang}/`))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 2);
+---
+
+<section id="blog" class="max-w-[1200px] mx-auto px-6 mb-48 @container">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div class="md:col-span-4">
+            <h2
+                class="text-sm font-bold uppercase tracking-widest text-gray-400 sticky top-32 scroll-spy-title"
+                data-section="blog"
+            >
+                {t("blog.label")}
+            </h2>
+        </div>
+        <div class="md:col-span-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {
+                    posts.map((post) => (
+                        <a href={`/blog/${post.slug}`} class="block group">
+                            <article class="h-full border border-neutral-200 dark:border-neutral-800 rounded-2xl p-6 hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors cursor-pointer">
+                                <span class="text-xs font-mono text-neutral-400 mb-4 block">
+                                    {post.data.pubDate.toLocaleDateString(
+                                        lang,
+                                        {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "numeric",
+                                        },
+                                    )}
+                                </span>
+                                <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors dark:text-white">
+                                    {post.data.title}
+                                </h3>
+                                <p class="text-neutral-500 text-sm">
+                                    {post.data.description}
+                                </p>
+                            </article>
+                        </a>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .blog-row {
+        transition: all 0.3s ease;
+        border-bottom: 1px solid;
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    :global(.dark) .blog-row {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .blog-row:hover {
+        padding-left: 1rem;
+        background-color: #fafafa;
+    }
+
+    :global(.dark) .blog-row:hover {
+        background-color: #171717;
+    }
+
+    .read-arrow {
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+    }
+
+    .blog-row:hover .read-arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+</style>

@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-roboto: "Roboto", sans-serif;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+html {
+    scroll-padding-top: 100px;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+html.theme-transitioning::view-transition-old(root),
+html.theme-transitioning::view-transition-new(root) {
+    animation: none !important;
+    mix-blend-mode: normal;
+}
+
+html.theme-transitioning::view-transition-new(root) {
+    z-index: 2147483646;
+}
+
+html.theme-transitioning::view-transition-old(root) {
+    z-index: 1;
+}
+
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+    transition: none !important;
+    transition-delay: 0s !important;
+    view-transition-name: none !important;
+}
+
+::view-transition-old(blog-content) {
+    animation: blog-fade-out 0.2s ease-out forwards;
+}
+
+::view-transition-new(blog-content) {
+    animation: blog-slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes blog-slide-up {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes blog-fade-out {
+    to {
+        opacity: 0;
+    }
+}

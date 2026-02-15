@@ -1,0 +1,118 @@
+---
+import { getLangFromUrl, useTranslations } from "@shared/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<nav
+    id="main-header"
+    class="fixed top-0 left-0 w-full z-50 bg-white dark:bg-[#0a0a0a] border-b border-black/5 dark:border-white/5 transition-all duration-300"
+>
+    <div
+        class="max-w-[1400px] mx-auto px-6 py-4 flex justify-between items-center"
+    >
+        <div class="flex items-center gap-6">
+            <a
+                href={`/${lang}/`}
+                class="font-bold tracking-tight text-xl z-50 magnetic-wrap relative inline-block text-neutral-900 dark:text-white"
+            >
+                <span
+                    class="magnetic-target inline-block transition-transform duration-200 ease-out"
+                    >ALLAN QUIROZ</span
+                >
+            </a>
+            <div
+                class="hidden sm:flex items-center gap-2 px-3 py-1 bg-green-500/10 dark:bg-green-500/20 rounded-full border border-green-500/20"
+            >
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+                    ></span>
+                    <span
+                        class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
+                    ></span>
+                </span>
+                <span
+                    class="text-[10px] font-bold text-green-700 dark:text-green-400 uppercase tracking-widest font-mono"
+                    >{t("nav.available")}</span
+                >
+            </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <div
+                class="hidden lg:flex gap-8 text-sm font-medium text-neutral-600 dark:text-neutral-400"
+            >
+                <a
+                    href={`/${lang}/#work`}
+                    class="relative magnetic-wrap hover:text-black dark:hover:text-white transition-colors after:content-[''] after:absolute after:w-0 after:h-px after:-bottom-0.5 after:left-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
+                    ><span
+                        class="magnetic-target inline-block transition-transform duration-200 ease-out"
+                        >{t("nav.experience")}</span
+                    ></a
+                >
+                {
+                    /* <a
+                    href={`/${lang}/#projects`}
+                    class="relative magnetic-wrap hover:text-black dark:hover:text-white transition-colors after:content-[''] after:absolute after:w-0 after:h-px after:-bottom-0.5 after:left-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
+                    ><span
+                        class="magnetic-target inline-block transition-transform duration-200 ease-out"
+                        >{t("nav.projects")}</span
+                    ></a
+                > */
+                }
+                <a
+                    href={`/${lang}/#about`}
+                    class="relative magnetic-wrap hover:text-black dark:hover:text-white transition-colors after:content-[''] after:absolute after:w-0 after:h-px after:-bottom-0.5 after:left-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
+                    ><span
+                        class="magnetic-target inline-block transition-transform duration-200 ease-out"
+                        >{t("nav.about")}</span
+                    ></a
+                >
+                <a
+                    href={`/${lang}/#blog`}
+                    class="relative magnetic-wrap hover:text-black dark:hover:text-white transition-colors after:content-[''] after:absolute after:w-0 after:h-px after:-bottom-0.5 after:left-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
+                    ><span
+                        class="magnetic-target inline-block transition-transform duration-200 ease-out"
+                        >{t("nav.blog")}</span
+                    ></a
+                >
+                <a
+                    href={`/${lang}/#contact`}
+                    class="relative magnetic-wrap hover:text-black dark:hover:text-white transition-colors after:content-[''] after:absolute after:w-0 after:h-px after:-bottom-0.5 after:left-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
+                    ><span
+                        class="magnetic-target inline-block transition-transform duration-200 ease-out"
+                        >{t("nav.contact")}</span
+                    ></a
+                >
+            </div>
+
+            <a
+                href={(() => {
+                    const currentPath = Astro.url.pathname;
+                    const segments = currentPath.split("/").filter(Boolean);
+                    const targetLang = lang === "es" ? "en" : "es";
+
+                    const langIndex = segments.findIndex((s) => s === lang);
+
+                    if (langIndex !== -1) {
+                        const newSegments = [...segments];
+                        newSegments[langIndex] = targetLang;
+
+                        if (langIndex === 0 && targetLang === "es") {
+                            return "/";
+                        }
+
+                        return "/" + newSegments.join("/");
+                    } else {
+                        return "/en" + (currentPath === "/" ? "" : currentPath);
+                    }
+                })()}
+                class="text-sm font-bold font-mono text-neutral-900 dark:text-white hover:opacity-70 transition-opacity"
+            >
+                {lang === "es" ? "EN" : "ES"}
+            </a>
+        </div>
+    </div>
+</nav>

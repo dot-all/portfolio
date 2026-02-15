@@ -1,0 +1,100 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../../../styles/shared/styles/tokens.css";
+import Headbar from "../../headbar/ui/Headbar.astro";
+import ScrollToTop from "@features/scroll-top/ui/ScrollToTop.astro";
+import ThemeToggle from "@features/theme/ui/ThemeToggle.astro";
+import SEO from "@shared/ui/SEO.astro";
+
+interface Props {
+	lang: string;
+	title?: string;
+	description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+
+import { useTranslations } from "@shared/i18n";
+const t = useTranslations(lang as any);
+const siteTitle = title || (t("site.title") as string);
+const siteDescription = description || (t("hero.meta_description") as string);
+---
+
+<!doctype html>
+<html lang={lang} class="bg-white dark:bg-neutral-950">
+	<head>
+		<SEO title={siteTitle} description={siteDescription} />
+		<ClientRouter />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+			rel="stylesheet"
+		/>
+
+		<script is:inline>
+			(function () {
+				const getTheme = () => {
+					if (
+						typeof localStorage !== "undefined" &&
+						localStorage.getItem("theme")
+					) {
+						return localStorage.getItem("theme");
+					}
+					if (
+						window.matchMedia("(prefers-color-scheme: dark)")
+							.matches
+					) {
+						return "dark";
+					}
+					return "light";
+				};
+
+				const setTheme = () => {
+					const theme = getTheme();
+					if (theme === "dark") {
+						document.documentElement.classList.add("dark");
+					} else {
+						document.documentElement.classList.remove("dark");
+					}
+				};
+
+				setTheme();
+
+				document.addEventListener("astro:after-swap", setTheme);
+			})();
+		</script>
+	</head>
+
+	<body
+		class="w-full h-full m-0 box-border bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 antialiased selection:bg-indigo-500 selection:text-white overflow-x-hidden font-sans"
+		transition:animate="fade"
+	>
+		<Headbar />
+		<slot />
+
+		<ScrollToTop />
+		<ThemeToggle />
+
+		<script>
+			import { initLenis } from "@shared/lib/scroll/lenis";
+			import { initScrollReveal } from "@features/scroll-reveal/model";
+			import { initScrollSpy } from "@features/scroll-spy/model";
+
+			document.addEventListener("astro:page-load", () => {
+				initLenis();
+				initScrollReveal();
+				initScrollSpy();
+			});
+
+			window.addEventListener("mousemove", (e) => {
+				const spotlight = document.getElementById("spotlight");
+				if (spotlight) {
+					spotlight.style.setProperty("--x", `${e.clientX}px`);
+					spotlight.style.setProperty("--y", `${e.clientY}px`);
+				}
+			});
+		</script>
+	</body>
+</html>

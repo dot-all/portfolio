@@ -1,0 +1,256 @@
+---
+import Container from "@shared/ui/Container.astro";
+import { useTranslations, ui } from "@shared/i18n";
+
+interface Props {
+    lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+interface BaseItem {
+    [key: string]: any;
+}
+
+interface SkillRow {
+    type:
+        | "interface"
+        | "server"
+        | "persistence"
+        | "devops"
+        | "languages"
+        | "mobile";
+    title: string;
+    items?: BaseItem[] | string[];
+}
+
+const rows = (ui[lang] as any)["skills.rows"] as SkillRow[];
+---
+
+<section
+    id="about"
+    class="opacity-0 translate-y-[30px] transition-all duration-700 ease-[cubic-bezier(0.5,0,0,1)] reveal-on-scroll @container mb-48"
+>
+    <Container>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div class="md:col-span-3 lg:col-span-4">
+                <h2
+                    class="text-sm font-bold uppercase tracking-widest text-gray-400 sticky top-32 font-mono scroll-spy-title"
+                    data-section="about"
+                >
+                    {t("skills.title")}
+                </h2>
+            </div>
+
+            <div class="md:col-span-9 lg:col-span-8">
+                <div class="mb-24">
+                    <div
+                        class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
+                    >
+                        <div>
+                            <p
+                                class="text-2xl md:text-3xl font-medium leading-tight text-neutral-900 dark:text-white mb-6"
+                            >
+                                {t("skills.quote")}
+                            </p>
+                        </div>
+                        <div
+                            class="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed space-y-6"
+                        >
+                            <p
+                                set:html={t("skills.bio1").replace(
+                                    /\*\*(.*?)\*\*/g,
+                                    '<strong class="text-neutral-900 dark:text-white font-bold">$1</strong>',
+                                )}
+                            />
+                            <p
+                                set:html={t("skills.bio2").replace(
+                                    /\*\*(.*?)\*\*/g,
+                                    '<strong class="text-neutral-900 dark:text-white font-bold">$1</strong>',
+                                )}
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="skills" class="scroll-mt-32">
+                    <div
+                        class="flex items-baseline justify-between mb-8 border-b border-black/10 dark:border-white/10 pb-4"
+                    >
+                        <h3
+                            class="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 font-mono"
+                        >
+                            {t("skills.specsTitle")}
+                        </h3>
+                        <span class="text-xs font-mono text-neutral-400">
+                            {t("skills.version")}
+                        </span>
+                    </div>
+
+                    <div
+                        class="border border-black/10 dark:border-white/10 rounded-3xl overflow-hidden"
+                    >
+                        {
+                            rows.map((row) => (
+                                <>
+                                    {row.type === "interface" && (
+                                        <div class="grid grid-cols-1 md:grid-cols-12 border-b border-black/10 dark:border-white/10">
+                                            <div class="md:col-span-4 p-6 md:p-8 bg-neutral-50 dark:bg-neutral-900/50 flex items-center md:border-r border-black/10 dark:border-white/10">
+                                                <span class="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                                                    {row.title}
+                                                </span>
+                                            </div>
+                                            <div class="md:col-span-8 p-6 md:p-8 flex flex-col gap-6">
+                                                {row.items?.map((item: any) => (
+                                                    <div>
+                                                        <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 mb-2 block">
+                                                            {item.label}
+                                                        </span>
+                                                        <p
+                                                            class={`font-medium text-neutral-900 dark:text-white ${item.label.toLowerCase().includes("core") || item.label.toLowerCase().includes("specialization") || item.label.toLowerCase().includes("especialidad") ? "text-xl" : "text-sm font-mono text-neutral-500"}`}
+                                                        >
+                                                            {item.text}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {row.type === "mobile" && (
+                                        <div class="grid grid-cols-1 md:grid-cols-12 border-b border-black/10 dark:border-white/10">
+                                            <div class="md:col-span-4 p-6 md:p-8 bg-neutral-50 dark:bg-neutral-900/50 flex items-center md:border-r border-black/10 dark:border-white/10">
+                                                <span class="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                                                    {row.title}
+                                                </span>
+                                            </div>
+                                            <div class="md:col-span-8 p-6 md:p-8 flex flex-col gap-6">
+                                                {row.items?.map((item: any) => (
+                                                    <div>
+                                                        <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 mb-2 block">
+                                                            {item.label}
+                                                        </span>
+                                                        <p
+                                                            class={`font-medium text-neutral-900 dark:text-white ${item.label.toLowerCase().includes("core") ? "text-xl" : "text-sm font-mono text-neutral-500"}`}
+                                                        >
+                                                            {item.text}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {row.type === "server" && (
+                                        <div class="grid grid-cols-1 md:grid-cols-12 border-b border-black/10 dark:border-white/10">
+                                            <div class="md:col-span-4 p-6 md:p-8 bg-neutral-50 dark:bg-neutral-900/50 flex items-center md:border-r border-black/10 dark:border-white/10">
+                                                <span class="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                                                    {row.title}
+                                                </span>
+                                            </div>
+                                            <div class="md:col-span-8 p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                                {row.items?.map((item: any) => (
+                                                    <div>
+                                                        <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-400 mb-2 block">
+                                                            {item.label}
+                                                        </span>
+                                                        <p class="text-lg font-medium text-neutral-900 dark:text-white">
+                                                            {item.title}
+                                                        </p>
+                                                        <p class="text-sm text-neutral-500 font-mono mt-1">
+                                                            {item.desc}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {row.type === "persistence" && (
+                                        <div class="grid grid-cols-1 md:grid-cols-12 border-b border-black/10 dark:border-white/10">
+                                            <div class="md:col-span-4 p-6 md:p-8 bg-neutral-50 dark:bg-neutral-900/50 flex items-center md:border-r border-black/10 dark:border-white/10">
+                                                <span class="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                                                    {row.title}
+                                                </span>
+                                            </div>
+                                            <div class="md:col-span-8 p-6 md:p-8">
+                                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                                    {row.items?.map(
+                                                        (item: any) => (
+                                                            <div class="flex items-center gap-2">
+                                                                <div
+                                                                    class={`w-1.5 h-1.5 rounded-full ${item.color}`}
+                                                                />
+                                                                <span class="text-sm font-medium dark:text-neutral-200">
+                                                                    {item.name}
+                                                                </span>
+                                                            </div>
+                                                        ),
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {row.type === "devops" && (
+                                        <div class="grid grid-cols-1 md:grid-cols-12 border-b border-black/10 dark:border-white/10 last:border-b-0">
+                                            <div class="md:col-span-4 p-6 md:p-8 bg-neutral-50 dark:bg-neutral-900/50 flex items-center md:border-r border-black/10 dark:border-white/10">
+                                                <span class="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                                                    {row.title}
+                                                </span>
+                                            </div>
+                                            <div class="md:col-span-8 p-6 md:p-8 flex flex-wrap gap-x-6 gap-y-2 items-center text-sm font-mono text-neutral-600 dark:text-neutral-400">
+                                                {row.items?.map(
+                                                    (
+                                                        item: any,
+                                                        index: number,
+                                                    ) => (
+                                                        <>
+                                                            <span>{item}</span>
+                                                            {index <
+                                                                (row.items
+                                                                    ?.length ||
+                                                                    0) -
+                                                                    1 && (
+                                                                <span class="text-neutral-300">
+                                                                    /
+                                                                </span>
+                                                            )}
+                                                        </>
+                                                    ),
+                                                )}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {row.type === "languages" && (
+                                        <div class="grid grid-cols-1 md:grid-cols-12 last:border-b-0">
+                                            <div class="md:col-span-4 p-6 md:p-8 bg-neutral-50 dark:bg-neutral-900/50 flex items-center md:border-r border-black/10 dark:border-white/10">
+                                                <span class="font-mono text-xs text-neutral-400 uppercase tracking-widest">
+                                                    {row.title}
+                                                </span>
+                                            </div>
+                                            <div class="md:col-span-8 p-6 md:p-8 flex flex-wrap gap-x-12 gap-y-6">
+                                                {row.items?.map((item: any) => (
+                                                    <div>
+                                                        <p class="text-xl font-medium text-neutral-900 dark:text-white">
+                                                            {item.language}
+                                                        </p>
+                                                        <p class="text-sm font-mono text-neutral-500 mt-1">
+                                                            {item.level}
+                                                        </p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>

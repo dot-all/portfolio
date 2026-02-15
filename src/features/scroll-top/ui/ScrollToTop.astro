@@ -1,0 +1,52 @@
+<button
+    id="scroll-to-top"
+    class="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full flex items-center justify-center opacity-0 translate-y-10 transition-all duration-300 hover:scale-110 cursor-pointer pointer-events-none mix-blend-difference bg-white text-black"
+    aria-label="Scroll to top"
+>
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</button>
+
+<script>
+    let scrollHandler: (() => void) | null = null;
+
+    document.addEventListener("astro:page-load", () => {
+        const scrollToTopBtn = document.getElementById("scroll-to-top");
+
+        scrollHandler = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > 500) {
+                scrollToTopBtn?.classList.remove(
+                    "opacity-0",
+                    "translate-y-10",
+                    "pointer-events-none",
+                );
+            } else {
+                scrollToTopBtn?.classList.add(
+                    "opacity-0",
+                    "translate-y-10",
+                    "pointer-events-none",
+                );
+            }
+        };
+
+        window.addEventListener("scroll", scrollHandler);
+
+        scrollToTopBtn?.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        scrollHandler();
+    });
+
+    document.addEventListener("astro:before-swap", () => {
+        if (scrollHandler) {
+            window.removeEventListener("scroll", scrollHandler);
+        }
+    });
+</script>

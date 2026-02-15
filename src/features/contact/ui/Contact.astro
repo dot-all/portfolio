@@ -1,0 +1,148 @@
+---
+import { useTranslations, ui } from "@shared/i18n";
+
+import Container from "@shared/ui/Container.astro";
+
+interface Props {
+    lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang as keyof typeof ui);
+---
+
+<footer
+    id="contact"
+    class="bg-black dark:bg-neutral-950/50 text-white py-20 relative z-10"
+>
+    <Container
+        class="min-h-[80vh] flex flex-col items-center justify-center text-center"
+    >
+        <h2
+            class="text-gray-500 uppercase tracking-widest text-sm font-bold mb-8 scroll-spy-title"
+            data-section="contact"
+        >
+            4. {lang === "es" ? "¿HABLAMOS?" : "LET'S TALK?"}
+        </h2>
+
+        <div class="relative mb-32 group">
+            <h2
+                class="text-[16vw] md:text-[180px] font-bold tracking-tighter leading-none cursor-pointer select-none hover:opacity-70 active:opacity-50 transition-opacity duration-300"
+                id="contact-title"
+                title={t("contact.copy_tooltip")}
+            >
+                {
+                    t("contact.title")
+                        .split("")
+                        .map((char: string, index: number) => (
+                            <span
+                                class="scroll-char inline-block transition-transform duration-100 ease-linear will-change-transform"
+                                data-index={index}
+                            >
+                                {char === " " ? "\u00A0" : char}
+                            </span>
+                        ))
+                }
+            </h2>
+            <div
+                id="copy-toast"
+                class="absolute left-1/2 -translate-x-1/2 -bottom-16 opacity-0 translate-y-4 transition-all duration-300 bg-white text-black px-6 py-2 rounded-full text-sm font-medium pointer-events-none whitespace-nowrap"
+            >
+                {t("contact.copied")}
+            </div>
+        </div>
+
+        <div class="flex gap-8 text-sm font-mono uppercase text-gray-500 mb-20">
+            <a
+                href="https://www.linkedin.com/in/im-allan/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-white transition-colors"
+            >
+                LinkedIn
+            </a>
+            <a
+                href="https://github.com/dot-all"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-white transition-colors"
+            >
+                GitHub
+            </a>
+            <a
+                href="mailto:al.quirozsilva@gmail.com"
+                class="hover:text-white transition-colors"
+            >
+                Email
+            </a>
+        </div>
+    </Container>
+</footer>
+
+<script>
+    const title = document.getElementById("contact-title");
+    const chars = document.querySelectorAll(".scroll-char");
+    const toast = document.getElementById("copy-toast");
+    let toastTimeout: number;
+
+    if (title) {
+        title.addEventListener("click", () => {
+            navigator.clipboard
+                .writeText("al.quirozsilva@gmail.com")
+                .then(() => {
+                    if (toast) {
+                        toast.classList.remove("opacity-0", "translate-y-4");
+
+                        clearTimeout(toastTimeout);
+                        toastTimeout = window.setTimeout(() => {
+                            toast.classList.add("opacity-0", "translate-y-4");
+                        }, 2000);
+                    }
+                });
+        });
+
+        if (chars.length > 0) {
+            window.addEventListener("scroll", () => {
+                const rect = title.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+
+                const distanceToBottom = viewportHeight - rect.top;
+
+                if (distanceToBottom > 0) {
+                    chars.forEach((char, index) => {
+                        const reverseIndex = chars.length - 1 - index;
+                        let curve = 0;
+                        let threshold = 0;
+
+                        if (reverseIndex === 1) {
+                            curve = 1.4;
+                            threshold = 0.3;
+                        } else if (reverseIndex === 0) {
+                            curve = 0.5;
+                        } else if (reverseIndex === 2) {
+                            curve = 0.2;
+                        } else {
+                            curve = 0;
+                        }
+
+                        const rawProgress = Math.max(
+                            0,
+                            Math.min(distanceToBottom / viewportHeight, 1),
+                        );
+
+                        const scrollFactor = Math.max(
+                            0,
+                            (rawProgress - threshold) / (1 - threshold),
+                        );
+
+                        const maxRise = window.innerWidth < 768 ? 10 : 20;
+                        const translateY = -1 * curve * scrollFactor * maxRise;
+
+                        (char as HTMLElement).style.transform =
+                            `translateY(${translateY}px)`;
+                    });
+                }
+            });
+        }
+    }
+</script>
