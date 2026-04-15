@@ -69,8 +69,8 @@ export const en = {
             items: [
                 {
                     label: "Runtime & Languages",
-                    title: "Node.js, Java, Python, PHP, .NET",
-                    desc: "Spring Boot, Django, Laravel, Express",
+                    title: "TypeScript, Java, Python, PHP, .NET",
+                    desc: "Spring Boot, Django, Laravel, Express, Node.js",
                 },
                 {
                     label: "Architecture",
@@ -89,6 +89,8 @@ export const en = {
                 { name: "MongoDB", color: "bg-green-500" },
                 { name: "MySQL", color: "bg-orange-500" },
                 { name: "IBM DB2", color: "bg-blue-800" },
+                { name: "Firebase", color: "bg-yellow-400" },
+                { name: "Supabase", color: "bg-sky-500" },
                 { name: "Redis", color: "bg-red-600" },
             ],
         },
@@ -127,9 +129,9 @@ export const en = {
             company: "Afisan, Health / Medical",
             summary: "Design and implementation of scalable solutions and maintenance of critical systems.",
             details: [
-                "Designed and implemented microservices architecture for clinical-financial system, ensuring scalability using Docker and Nginx.",
-                "Performed preventive and corrective maintenance on legacy systems developed in PHP and ASP.",
-                "Built scalable web solutions, linking interactive Frontend components with robust RESTful APIs developed in Django.",
+                "Designed and implemented microservices architecture for clinical-financial system, ensuring scalability and platform resilience.",
+                "Performed preventive and corrective maintenance on legacy systems, ensuring business continuity.",
+                "Built scalable web solutions, linking interactive frontend components with robust RESTful APIs.",
                 "Automated metrics and KPI extraction using stored procedures and SQL queries.",
                 "Designed ERM architecture, defining entities, tables, and relationships supporting business logic.",
                 "Redesigned SQL statements, eliminating redundancies and improving critical query response time by 40%.",
@@ -141,8 +143,8 @@ export const en = {
             company: "Freelance",
             summary: "Full-cycle development of cross-platform mobile applications, focusing on building functional and scalable solutions.",
             details: [
-                "Applying Clean Architecture principles to improve maintainability and structure within the Flutter codebase.",
-                "State management using reactive patterns such as Bloc and Riverpod based on project requirements.",
+                "Applying Clean Architecture principles to improve maintainability and structure of the codebase.",
+                "State management using reactive patterns based on project requirements.",
                 "Use of local persistence strategies and synchronization with external RESTful services for data handling.",
                 "Focus on UI/UX using animations and adaptive layouts for various screen sizes.",
             ],
@@ -153,10 +155,10 @@ export const en = {
             company: "Alloxentric",
             summary: "Professional Internship. AI model development and full-stack integration.",
             details: [
-                "Designed and implemented a Deep Learning model with PyTorch for voice feature analysis and classification.",
-                "Developed voice inference API using Flask to serve the model and ensure integration with web systems (Laravel/Vue.js).",
-                "Built full-stack platform with Vue.js and Laravel for result visualization and call analysis management.",
-                "Achieved high accuracy in gender and age range detection (F-score 0.98).",
+                "Designed and implemented a Deep Learning model for voice feature analysis and classification.",
+                "Developed voice inference API to serve the model and ensure integration with web systems.",
+                "Built a full-stack platform for result visualization and call analysis management.",
+                "Achieved high accuracy in gender and age range detection.",
                 "Implemented silence and speech time detection for real call duration measurement.",
                 "Created predictive analysis system for agent profiling and quality management.",
             ],

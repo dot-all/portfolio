@@ -69,8 +69,8 @@ export const es = {
             items: [
                 {
                     label: "Runtime & Languages",
-                    title: "Node.js, Java, Python, PHP, .NET",
-                    desc: "Spring Boot, Django, Laravel, Express",
+                    title: "TypeScript, Java, Python, PHP, .NET",
+                    desc: "Spring Boot, Django, Laravel, Express, Node.js",
                 },
                 {
                     label: "Arquitectura",
@@ -89,6 +89,8 @@ export const es = {
                 { name: "MongoDB", color: "bg-green-500" },
                 { name: "MySQL", color: "bg-orange-500" },
                 { name: "IBM DB2", color: "bg-blue-800" },
+                { name: "Firebase", color: "bg-yellow-400" },
+                { name: "Supabase", color: "bg-sky-500" },
                 { name: "Redis", color: "bg-red-600" },
             ],
         },
@@ -122,14 +124,14 @@ export const es = {
     'experience.cv_file': '/cv/es/CV_ALLAN_QUIROZ.pdf',
     'experience.items': [
         {
-            period: "Sep 2024 — Presente",
+            period: "Ene 2024 — Presente",
             role: "Ingeniero De Software",
             company: "Afisan, Medicina / Salud",
             summary: "Diseño e implementación de soluciones escalables y mantenimiento de sistemas críticos.",
             details: [
-                "Diseñar e implementar arquitectura de microservicios para sistema clínico-financiero, asegurando la escalabilidad con el uso de Docker y Ngnix.",
-                "Realizar mantenimiento preventivo y correctivo a sistemas legacy desarrollados en PHP y ASP, asegurando la continuidad operativa del negocio.",
-                "Construir soluciones web escalables, vinculando componentes Frontend interactivos con APIS RESTFUL robustas desarrolladas en Django.",
+                "Diseñar e implementar arquitectura de microservicios para sistema clínico-financiero, asegurando escalabilidad y resiliencia de la plataforma.",
+                "Realizar mantenimiento preventivo y correctivo a sistemas legacy, asegurando la continuidad operativa del negocio.",
+                "Construir soluciones web escalables, vinculando componentes frontend interactivos con APIs RESTful robustas.",
                 "Automatizar la extracción de métricas y KPIs mediante procedimientos almacenados y consultas SQL, optimizando los tiempos de entrega de reportes.",
                 "Diseñar la arquitectura del MER, definiendo entidades, tablas y relaciones que soporten la lógica del negocio.",
                 "Rediseño de sentencias SQL, eliminando redundancias y mejorando el tiempo de respuesta de las consultas críticas en un 40%.",
@@ -141,10 +143,10 @@ export const es = {
             company: "Freelance",
             summary: "Desarrollo integral de aplicaciones móviles multiplataforma, con foco en la creación de soluciones funcionales y escalables.",
             details: [
-                "Aplicación de principios de Clean Architecture para mejorar la mantenibilidad y estructura del código en Flutter.",
-                "Gestión de estados reactivos utilizando patrones como Bloc y Riverpod según las necesidades del proyecto.",
-                "Uso de persistencia local y sincronización con servicios RESTful externos para el manejo de datos.",
-                "Enfoque en UI/UX mediante el uso de animaciones y layouts adaptables para diversas pantallas.",
+                "Aplicación de principios de Clean Architecture para mejorar la mantenibilidad y estructura del código.",
+                "Gestión de estados reactivos utilizando patrones adecuados según las necesidades del proyecto.",
+                "Uso de persistencia local y sincronización con servicios externos RESTful para el manejo de datos.",
+                "Enfoque en UI/UX mediante animaciones y layouts adaptables para diversas pantallas.",
             ],
         },
         {
@@ -153,10 +155,10 @@ export const es = {
             company: "Alloxentric",
             summary: "Práctica Profesional. Desarrollo de modelos de IA e integración full-stack.",
             details: [
-                "Diseñar e implementar un modelo de Deep Learning con PyTorch para el análisis y clasificación de características de voz en llamadas telefónicas.",
-                "Desarrollar la API de inferencia de voz usando Flask para servir el modelo, y asegurar su integración con los sistemas web (Laravel/Vue.js).",
-                "Construir la plataforma full-stack con Vue.js y Laravel para la visualización de resultados y la gestión del sistema de análisis de llamadas.",
-                "Alto nivel de precisión en la detección de sexo y rango etario con dataset Common Voice (F-score 0.98).",
+                "Diseñar e implementar un modelo de Deep Learning para el análisis y clasificación de características de voz en llamadas telefónicas.",
+                "Desarrollar la API de inferencia de voz para servir el modelo y asegurar su integración con sistemas web.",
+                "Construir la plataforma full-stack para la visualización de resultados y la gestión del sistema de análisis de llamadas.",
+                "Alto nivel de precisión en la detección de sexo y rango etario.",
                 "Implementación de detección de silencio y tiempos de habla para medición real de llamadas.",
                 "Creación de sistema de análisis predictivo para perfilamiento de agentes y gestión de calidad.",
             ],
