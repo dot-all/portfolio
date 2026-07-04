@@ -112,7 +112,7 @@ import outfit500 from '@fontsource/outfit/files/outfit-latin-500-normal.woff2?ur
             font-family: inherit;
             font-size: inherit;
             font-weight: 500;
-            color: #5c5c61;
+            color: #636366;
             cursor: pointer;
             transition: color 0.2s ease;
         }
@@ -390,7 +390,7 @@ import outfit500 from '@fontsource/outfit/files/outfit-latin-500-normal.woff2?ur
             }, 2500);
         }
 
-        const emailBtns = document.querySelectorAll('.email-copy-btn');
+        const emailBtns = document.querySelectorAll<HTMLElement>('.email-copy-btn');
         emailBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
