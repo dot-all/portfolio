@@ -3,14 +3,22 @@
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
-import '@fontsource/lora/500-italic.css';
 import '@fontsource/outfit/500.css';
+
+import inter400 from '@fontsource/inter/files/inter-latin-400-normal.woff2?url';
+import inter500 from '@fontsource/inter/files/inter-latin-500-normal.woff2?url';
+import inter600 from '@fontsource/inter/files/inter-latin-600-normal.woff2?url';
+import outfit500 from '@fontsource/outfit/files/outfit-latin-500-normal.woff2?url';
 ---
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="preload" href={inter400} as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href={inter500} as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href={inter600} as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href={outfit500} as="font" type="font/woff2" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Allan — Ingeniero de Software</title>
     <meta name="description" content="Allan es un Ingeniero de Software enfocado en diseño y construcción de sistemas escalables. Residente en Viña del Mar, Chile.">
